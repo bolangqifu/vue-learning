@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="product in products">
+                <input type="number" v-model.number="product.id">
+                {{product.text}}
+                <span v-if="product.id == 0">
+                    - OUT OF STOCK
+                </span>
+                <button @click="product.id+=1">Add</button>
+                <button @click="product.id-=1">Del</button>
+            </li>
+            <h2>Total:{{totalproducts}}</h2>
+        </ul>
+    </div>
+
+
+    <script>
+        const vm = new Vue({
+            el:'#app',
+            data:{
+                products:[{ id: 0, text: '蔬菜' ,name:'shucai'},
+                { id: 1, text: '奶酪' ,name:'nailao'},
+                { id: 2, text: '随便其它什么人吃的东西' ,name:'other'}]
+            },
+            computed:{
+                totalproducts(){
+                    return this.products.reduce(
+                        (sum,product)=>{
+                            return sum+product.id
+                        },0)
+                }
+            }
+            
+        })
+    </script>
+</body>
+</html>
