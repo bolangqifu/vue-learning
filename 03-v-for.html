@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+
+    <div id="app">
+     <ul>
+         <!-- <li v-for="item in items">{{item.animal}}</li> -->
+         <li v-for="(item,index) of items">
+             {{index}}-{{item.animal}}
+        </li>
+        <li v-for="(item,name,index) of obj">
+            {{index}}-{{name}}-{{item}}    
+        </li>
+        <li v-for="n in evennumbers">
+            {{n}}
+        </li>
+        <div>
+            <span v-for="n in 10">{{ n }} </span>
+        </div>
+     </ul>
+
+    </div>
+    
+    <script>
+        const vm = new Vue({
+            el:'#app',
+            data:{
+                items:[
+                {animal:'dog'},
+                {animal:'cat'}
+                ],
+                obj:{
+                    k1:'haha', 
+                    k2:'heihei',
+                    k3:'wowo'
+                },
+                numbers:[1,2,3,4,5]
+            },
+            computed:{
+                evennumbers:function(){
+                    return this.numbers.filter(function(number){
+                        return number%2 == 0
+                    })
+                }
+            }
+        })
+    </script>
+</body>
+</html>
